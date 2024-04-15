@@ -1,0 +1,26 @@
+[2024-04-15T10:02:04.889+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: clustering_from_mysql_to_bigquery_pipeline.load_from_gcs_to_bigquery manual__2024-04-15T10:02:03.034859+00:00 [queued]>
+[2024-04-15T10:02:04.897+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: clustering_from_mysql_to_bigquery_pipeline.load_from_gcs_to_bigquery manual__2024-04-15T10:02:03.034859+00:00 [queued]>
+[2024-04-15T10:02:04.897+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2024-04-15T10:02:04.915+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): load_from_gcs_to_bigquery> on 2024-04-15 10:02:03.034859+00:00
+[2024-04-15T10:02:04.923+0000] {standard_task_runner.py:57} INFO - Started process 2410 to run task
+[2024-04-15T10:02:04.928+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'clustering_from_mysql_to_bigquery_pipeline', 'load_from_gcs_to_bigquery', 'manual__2024-04-15T10:02:03.034859+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/clustering_from_msql2bigquery_pipeline.py', '--cfg-path', '/tmp/tmp_46cs66l']
+[2024-04-15T10:02:04.930+0000] {standard_task_runner.py:85} INFO - Job 13: Subtask load_from_gcs_to_bigquery
+[2024-04-15T10:02:04.979+0000] {task_command.py:410} INFO - Running <TaskInstance: clustering_from_mysql_to_bigquery_pipeline.load_from_gcs_to_bigquery manual__2024-04-15T10:02:03.034859+00:00 [running]> on host b109e2be0d92
+[2024-04-15T10:02:05.064+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Tor Thanawat' AIRFLOW_CTX_DAG_ID='clustering_from_mysql_to_bigquery_pipeline' AIRFLOW_CTX_TASK_ID='load_from_gcs_to_bigquery' AIRFLOW_CTX_EXECUTION_DATE='2024-04-15T10:02:03.034859+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-15T10:02:03.034859+00:00'
+[2024-04-15T10:02:06.039+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/clustering_from_msql2bigquery_pipeline.py", line 54, in _load_from_gcs_to_bigquery
+    job.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/job/base.py", line 922, in result
+    return super(_AsyncJob, self).result(timeout=timeout, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/future/polling.py", line 261, in result
+    raise self._exception
+google.api_core.exceptions.Forbidden: 403 Access Denied: File gs://test_1413/test_1413/clean_clustering.csv: Access Denied
+[2024-04-15T10:02:06.051+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=clustering_from_mysql_to_bigquery_pipeline, task_id=load_from_gcs_to_bigquery, execution_date=20240415T100203, start_date=20240415T100204, end_date=20240415T100206
+[2024-04-15T10:02:06.073+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 13 for task load_from_gcs_to_bigquery (403 Access Denied: File gs://test_1413/test_1413/clean_clustering.csv: Access Denied; 2410)
+[2024-04-15T10:02:06.111+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-04-15T10:02:06.128+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

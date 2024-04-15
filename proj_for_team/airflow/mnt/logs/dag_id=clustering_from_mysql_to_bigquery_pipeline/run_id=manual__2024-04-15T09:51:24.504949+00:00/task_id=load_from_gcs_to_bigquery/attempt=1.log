@@ -1,0 +1,34 @@
+[2024-04-15T09:51:26.406+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: clustering_from_mysql_to_bigquery_pipeline.load_from_gcs_to_bigquery manual__2024-04-15T09:51:24.504949+00:00 [queued]>
+[2024-04-15T09:51:26.414+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: clustering_from_mysql_to_bigquery_pipeline.load_from_gcs_to_bigquery manual__2024-04-15T09:51:24.504949+00:00 [queued]>
+[2024-04-15T09:51:26.414+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2024-04-15T09:51:26.437+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): load_from_gcs_to_bigquery> on 2024-04-15 09:51:24.504949+00:00
+[2024-04-15T09:51:26.445+0000] {standard_task_runner.py:57} INFO - Started process 1694 to run task
+[2024-04-15T09:51:26.448+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'clustering_from_mysql_to_bigquery_pipeline', 'load_from_gcs_to_bigquery', 'manual__2024-04-15T09:51:24.504949+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/clustering_from_msql2bigquery_pipeline.py', '--cfg-path', '/tmp/tmpx4mce961']
+[2024-04-15T09:51:26.450+0000] {standard_task_runner.py:85} INFO - Job 9: Subtask load_from_gcs_to_bigquery
+[2024-04-15T09:51:26.496+0000] {task_command.py:410} INFO - Running <TaskInstance: clustering_from_mysql_to_bigquery_pipeline.load_from_gcs_to_bigquery manual__2024-04-15T09:51:24.504949+00:00 [running]> on host b109e2be0d92
+[2024-04-15T09:51:26.584+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Tor Thanawat' AIRFLOW_CTX_DAG_ID='clustering_from_mysql_to_bigquery_pipeline' AIRFLOW_CTX_TASK_ID='load_from_gcs_to_bigquery' AIRFLOW_CTX_EXECUTION_DATE='2024-04-15T09:51:24.504949+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-15T09:51:24.504949+00:00'
+[2024-04-15T09:51:26.840+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/clustering_from_msql2bigquery_pipeline.py", line 52, in _load_from_gcs_to_bigquery
+    location=location,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 2380, in load_table_from_uri
+    load_job._begin(retry=retry, timeout=timeout)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/job/base.py", line 701, in _begin
+    timeout=timeout,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 816, in _call_api
+    return call()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/retry.py", line 354, in retry_wrapped_func
+    on_error=on_error,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/retry.py", line 191, in retry_target
+    return target()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.NotFound: 404 POST https://bigquery.googleapis.com/bigquery/v2/projects/mypim-410508/jobs?prettyPrint=false: Not found: Dataset mypim-410508:test_1413
+[2024-04-15T09:51:26.848+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=clustering_from_mysql_to_bigquery_pipeline, task_id=load_from_gcs_to_bigquery, execution_date=20240415T095124, start_date=20240415T095126, end_date=20240415T095126
+[2024-04-15T09:51:26.864+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 9 for task load_from_gcs_to_bigquery (404 POST https://bigquery.googleapis.com/bigquery/v2/projects/mypim-410508/jobs?prettyPrint=false: Not found: Dataset mypim-410508:test_1413; 1694)
+[2024-04-15T09:51:26.900+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-04-15T09:51:26.916+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
