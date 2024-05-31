@@ -1,4 +1,4 @@
-to open terminal key=> ctrl+`
+to open terminal in codespace (key shot-cut) => ctrl+`
 # Data Engineering on Google Cloud Platform (GCP)
 
 ### Table of Contents
